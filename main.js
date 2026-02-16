@@ -1,7 +1,7 @@
 const myLibrary = [];
-const bookCard = document.querySelector(".book-card");
 const booksContainer = document.querySelector(".container");
 const newBtn = document.getElementById("newBtn");
+const form = document.getElementById("book-form");
 
 function Book(title, author, pages, read) {
   if (!new.target) {
@@ -12,18 +12,19 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.coverImage = `https://picsum.photos/seed/${this.id}/250/120`;
+  this.coverImage = `https://picsum.photos/seed/${this.id}/200/280`;
 }
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
-  // take params, create a book then store it in the array
 }
 
-const book1 = new Book("Milena", "Kafka", 125, "read");
-addBookToLibrary(book1);
+// addBookToLibrary();
 
 function createBookCard(book) {
+  const bookCard = document.createElement("div");
+  bookCard.classList.add("book-card");
+
   bookCard.innerHTML = `
     <img src="${book.coverImage}" alt="${book.title} cover">
     <h3>${book.title}</h3>
@@ -31,20 +32,27 @@ function createBookCard(book) {
     <p>${book.pages} pages</p>
     <p>${book.read ? "Read" : "Not read yet"}</p>
   `;
-  bookCard;
   booksContainer.appendChild(bookCard);
 }
-
-createBookCard(book1);
 
 myLibrary.forEach((book) => {
   createBookCard(book);
 });
 
-console.log(book1);
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-console.log(myLibrary);
+  const title = document.getElementById("book-title").value;
+  const author = document.getElementById("book-author").value;
+  const pages = document.getElementById("book-pages").value;
 
-newBtn.addEventListener("click", () => {
-  console.log("hey");
+  const read =
+    document.querySelector('input[name="read"]:checked').value === "true";
+
+  const newBook = new Book(title, author, pages, read);
+  addBookToLibrary(newBook);
+
+  const card = createBookCard(newBook);
+
+  form.reset();
 });

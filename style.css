@@ -5,15 +5,16 @@ body {
 .container {
   height: 80vh;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
   align-items: center;
   justify-items: center;
 }
 
 .book-card {
   background-color: maroon;
-  width: 250px;
-  height: 250px;
+  width: 320px;
+  height: 420px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgb(0 0 0 / 0.2);
   color: white;
