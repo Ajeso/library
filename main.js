@@ -1,5 +1,6 @@
 const myLibrary = [];
 const bookCard = document.querySelector(".book-card");
+const booksContainer = document.querySelector(".container");
 
 function Book(title, author, pages, read) {
   if (!new.target) {
@@ -33,6 +34,11 @@ function createBookCard(book) {
 }
 
 createBookCard(book1);
+
+myLibrary.forEach((book) => {
+  booksContainer.appendChild(createBookCard(book));
+});
+
 console.log(book1);
 
 console.log(myLibrary);
