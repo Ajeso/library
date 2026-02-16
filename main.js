@@ -1,4 +1,5 @@
 const myLibrary = [];
+const bookCard = document.querySelector(".book-card");
 
 function Book(title, author, pages, read) {
   if (!new.target) {
@@ -9,6 +10,7 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.coverImage = `https://picsum.photos/seed/${this.id}/250/120`;
 }
 
 function addBookToLibrary(book) {
@@ -19,6 +21,18 @@ function addBookToLibrary(book) {
 const book1 = new Book("Milena", "Kafka", 125, "read");
 addBookToLibrary(book1);
 
+function createBookCard(book) {
+  bookCard.innerHTML = `
+    <img src="${book.coverImage}" alt="${book.title} cover">
+    <h3>${book.title}</h3>
+    <p>by ${book.author}</p>
+    <p>${book.pages} pages</p>
+    <p>${book.read ? "Read" : "Not read yet"}</p>
+  `;
+  bookCard;
+}
+
+createBookCard(book1);
 console.log(book1);
 
 console.log(myLibrary);

@@ -1,0 +1,26 @@
+body {
+  background-color: rgb(127, 90, 52);
+  margin: 0;
+}
+.container {
+  height: 80vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+
+.book-card {
+  background-color: maroon;
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.2);
+  color: white;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+}
+img {
+  border-radius: 10px;
+}
