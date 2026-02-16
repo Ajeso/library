@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 const booksContainer = document.querySelector(".container");
 const newBtn = document.getElementById("newBtn");
 const form = document.getElementById("book-form");
@@ -12,18 +12,20 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.coverImage = `https://picsum.photos/seed/${this.id}/200/280`;
+  this.coverImage = `https://picsum.photos/seed/${this.id}/320/280`;
 }
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-// addBookToLibrary();
-
 function createBookCard(book) {
+  console.log("Book object:", book);
+  console.log("Cover image:", book.coverImage);
+
   const bookCard = document.createElement("div");
   bookCard.classList.add("book-card");
+  bookCard.setAttribute("data-book-id", book.id);
 
   bookCard.innerHTML = `
     <img src="${book.coverImage}" alt="${book.title} cover">
@@ -31,8 +33,11 @@ function createBookCard(book) {
     <p>by ${book.author}</p>
     <p>${book.pages} pages</p>
     <p>${book.read ? "Read" : "Not read yet"}</p>
+  <button class="btn btn-danger btn-remove">Remove</button>
   `;
+
   booksContainer.appendChild(bookCard);
+  console.log(book.id);
 }
 
 myLibrary.forEach((book) => {
@@ -51,8 +56,17 @@ form.addEventListener("submit", (e) => {
 
   const newBook = new Book(title, author, pages, read);
   addBookToLibrary(newBook);
-
-  const card = createBookCard(newBook);
+  createBookCard(newBook);
 
   form.reset();
+});
+
+booksContainer.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btn-remove")) {
+    const card = e.target.closest(".book-card");
+    const bookIdToDelete = card.getAttribute("data-book-id");
+
+    myLibrary = myLibrary.filter((book) => book.id !== bookIdToDelete);
+    card.remove();
+  }
 });
