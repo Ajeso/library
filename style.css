@@ -3,31 +3,76 @@ body {
   margin: 0;
 }
 .container {
-  height: 80vh;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  align-items: center;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  padding: 30px;
 }
 
 .book-card {
-  background-color: maroon;
   width: 320px;
   height: 420px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgb(0 0 0 / 0.2);
+  background-color: maroon;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
   color: white;
-  font-size: 14px;
-  font-style: italic;
-  text-align: center;
+
+  display: grid;
+  grid-template-rows: 280px 1fr auto;
+}
+
+.book-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  grid-row: 1;
+}
+
+.book-card-content {
+  padding: 15px;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.book-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.book-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.book-card .btn-remove {
+  grid-row: 3;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 0 0 12px 12px;
+  background-color: #dc3545;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.book-card .btn-remove:hover {
+  background-color: #c82333;
 }
 img {
   border-radius: 10px;
 }
-/* ======================
-   Form Styles
-   ====================== */
 
 #book-form {
   max-width: 500px;
@@ -41,8 +86,6 @@ img {
 #book-form > div {
   margin-bottom: 20px;
 }
-
-/* Labels */
 #book-form label {
   display: block;
   margin-bottom: 8px;
@@ -51,7 +94,6 @@ img {
   font-size: 0.95rem;
 }
 
-/* Text and Number Inputs */
 #book-form input[type="text"],
 #book-form input[type="number"] {
   width: 90%;
@@ -69,7 +111,6 @@ img {
   border-color: #ff9f0a;
 }
 
-/* Radio Button Container */
 #book-form input[type="radio"] {
   margin-right: 8px;
   accent-color: #ff9f0a;
@@ -89,7 +130,6 @@ img {
   margin-top: 8px;
 }
 
-/* Submit Button */
 #book-form button[type="submit"] {
   width: 100%;
   padding: 14px;

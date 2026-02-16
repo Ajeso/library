@@ -28,13 +28,15 @@ function createBookCard(book) {
   bookCard.setAttribute("data-book-id", book.id);
 
   bookCard.innerHTML = `
-    <img src="${book.coverImage}" alt="${book.title} cover">
+  <img src="${book.coverImage}" alt="${book.title} cover">
+  <div class="book-card-content">
     <h3>${book.title}</h3>
     <p>by ${book.author}</p>
     <p>${book.pages} pages</p>
-    <p>${book.read ? "Read" : "Not read yet"}</p>
-  <button class="btn btn-danger btn-remove">Remove</button>
-  `;
+    <p>${book.read ? "✓ Read" : "○ Not read yet"}</p>
+  </div>
+  <button class="btn-remove">Remove</button>
+`;
 
   booksContainer.appendChild(bookCard);
   console.log(book.id);
