@@ -1,6 +1,7 @@
 const myLibrary = [];
 const bookCard = document.querySelector(".book-card");
 const booksContainer = document.querySelector(".container");
+const newBtn = document.getElementById("newBtn");
 
 function Book(title, author, pages, read) {
   if (!new.target) {
@@ -31,14 +32,19 @@ function createBookCard(book) {
     <p>${book.read ? "Read" : "Not read yet"}</p>
   `;
   bookCard;
+  booksContainer.appendChild(bookCard);
 }
 
 createBookCard(book1);
 
 myLibrary.forEach((book) => {
-  booksContainer.appendChild(createBookCard(book));
+  createBookCard(book);
 });
 
 console.log(book1);
 
 console.log(myLibrary);
+
+newBtn.addEventListener("click", () => {
+  console.log("hey");
+});
